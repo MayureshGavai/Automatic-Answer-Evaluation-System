@@ -1,0 +1,43 @@
+
+{% extends 'header.html' %}
+{% block content %}
+<!-- //Top Menu 1 -->
+
+<section class="w3l-contact-breadcrum">
+  <div class="breadcrum-bg py-sm-5 py-4">
+    <div class="container py-lg-3">
+      <h2>LOGIN</h2>
+	 </div>
+  </div>
+</section>
+<!-- contact form -->
+<section class="w3l-contacts-2" id="contact">
+	<div class="contacts-main">
+		<div class="form-41-mian py-5">
+			<div class="container py-md-3">
+				<h3 class="cont-head">Student LOGIN</h3>
+				<div class="d-grid align-form-map">
+					<div class="form-inner-cont">
+						<form action="/studentlogin" method="post" class="main-input">
+							<div class="top-inputs d-grid">
+								<input type="email" placeholder="Email" name="email" required>
+								<input type="password" name="pass" placeholder="Password" required>
+							</div>
+							<div class="text-right">
+								<button type="submit" class="btn btn-theme3">LOGIN</button>
+							</div>
+						</form>
+					</div>
+					<div class="contact-right">
+						<img src="{{ url_for('static',filename='images/ab-2.jpg')}}" class="img-fluid" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</section>
+<!-- //contact form -->
+{% endblock%}
+ 
+
+

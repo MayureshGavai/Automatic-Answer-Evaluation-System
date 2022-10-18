@@ -1,0 +1,210 @@
+{% extends 'studentheader.html' %}
+{% block content %}
+
+<style>
+  a,
+  h1,
+  h2 {
+    color: #377ba8;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  h1 {
+    border-bottom: 2px solid #eee;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  table.dataframe,
+  .dataframe th,
+  .dataframe td {
+    border: none;
+    border-bottom: 1px solid #C8C8C8;
+    border-collapse: collapse;
+    text-align: left;
+    padding: 10px;
+    margin-bottom: 40px;
+  }
+
+  .male th {
+    background-color: #add8e6;
+    color: white;
+  }
+
+  .female th {
+    background-color: #d2d0d0;
+    color: white;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #eee;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fff;
+  }
+
+  tr:hover {
+    background-color: #ffff99;
+  }
+</style>
+
+<div class="alert alert-success container" role="alert">
+  <p>{{name}} Your Exam Has Been Sumitted Please Contact Teacher For Marks</p>
+</div>
+<br>
+
+
+<div class="container">
+  <legend>Keywords matching ratio Table</legend>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">First Answer Ratio</th>
+        <th scope="col">Second Answer Ratio</th>
+        <th scope="col">Third Answer Ratio</th>
+        <th scope="col">Fourth Answer Ratio</th>
+        <th scope="col">Fifth Answer Ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ans_ratio1}}</td>
+        <td>{{ans_ratio2}}</td>
+        <td>{{ans_ratio3}}</td>
+        <td>{{ans_ratio4}}</td>
+        <td>{{ans_ratio5}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <br>
+  <legend>Answer Similarity Score</legend>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">First Answer Similarity Score</th>
+        <th scope="col">Second Answer Similarity Score</th>
+        <th scope="col">Third Answer Similarity Score</th>
+        <th scope="col">Fourth Answer Similarity Score</th>
+        <th scope="col">Fifth Answer Similarity Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{sim1}}</td>
+        <td>{{sim2}}</td>
+        <td>{{sim3}}</td>
+        <td>{{sim4}}</td>
+        <td>{{sim5}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <br>
+  <legend>Length of Answer Submitted by student</legend>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">First Answer Length</th>
+        <th scope="col">Second Answer Length</th>
+        <th scope="col">Third Answer Length</th>
+        <th scope="col">Fourth Answer Length</th>
+        <th scope="col">Fifth Answer Length</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{lngth1}}</td>
+        <td>{{lngth2}}</td>
+        <td>{{lngth3}}</td>
+        <td>{{lngth4}}</td>
+        <td>{{lngth5}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div class=page>
+    <h1>Answer 1</h1>
+    {% for table in tables1 %}
+    <h2>{{titles1}}</h2>
+    {{ table|safe }}
+    {% endfor %}
+  </div>
+  <br>
+  <div class=page>
+    <h1>Answer 2</h1>
+    {% for table in tables2 %}
+    <h2>{{titles2[loop.index]}}</h2>
+    {{ table|safe }}
+    {% endfor %}
+  </div>
+  <br>
+  <div class=page>
+    <h1>Answer 3</h1>
+    {% for table in tables3 %}
+    <h2>{{titles3[loop.index]}}</h2>
+    {{ table|safe }}
+    {% endfor %}
+  </div>
+<br>
+  <div class=page>
+    <h1>Answer 4</h1>
+    {% for table in tables4 %}
+    <h2>{{titles4[loop.index]}}</h2>
+    {{ table|safe }}
+    {% endfor %}
+  </div>
+<br>
+  <div class=page>
+    <h3>Answer 5</h3>
+    {% for table in tables5 %}
+    <h2>{{titles5[loop.index]}}</h2>
+    {{ table|safe }}
+    {% endfor %}
+  </div>
+  <br>
+  <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Studentname</th>
+            <th scope="col">Question1 Mark</th>
+            <th scope="col">Question2 Mark</th>
+            <th scope="col">Question3 Mark</th>
+            <th scope="col">Question4 Mark</th>
+            <th scope="col">Question5 Mark</th>
+            <th scope="col">FuzzyWuzzy Marks</th>
+            <th scope="col">Grammer Marks</th>
+            <th scope="col">Cosine Similarity Marks</th>
+            <th scope="col">Length of sentense Marks</th>
+            <th scope="col">Predicted Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for studname, ques1,ques2,ques3,ques4,ques5,fuzmark,gramark,cosinmark,lenmark,predmark in fresult %}
+        <tr>
+              <th scope="row">{{studname}}</th>              
+              <th scope="row">{{ques1}}</th>              
+              <th scope="row">{{ques2}}</th>              
+              <th scope="row">{{ques3}}</th>              
+              <th scope="row">{{ques4}}</th>              
+              <th scope="row">{{ques5}}</th>              
+              <th scope="row">{{fuzmark}}</th>              
+              <th scope="row">{{gramark}}</th>              
+              <th scope="row">{{cosinmark}}</th>              
+              <th scope="row">{{lenmark}}</th>              
+              <th scope="row">{{predmark}}</th>              
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+</div>
+{%endblock%}

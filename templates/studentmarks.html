@@ -1,0 +1,106 @@
+{% extends 'teacherheader.html' %}
+{% block content %}
+<section class="w3l-contact-breadcrum">
+  <div class="breadcrum-bg py-sm-5 py-4">
+    <div class="container py-lg-3">
+      <h2>Student Marks</h2>
+    </div>
+  </div>
+</section>
+<!-- contact form -->
+<section class="w3l-contacts-2" id="contact" style="margin-left: 250px;">
+  <br>
+  <h3 style="margin-left: 250px;">Student Marks</h3>
+  <div class="contacts-main">
+    <div class="form-41-mian py-5">
+      <div class="d-grid align-form-map">
+        <div class="form-inner-cont">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">sid</th>
+                  <th scope="col">Studentname</th>
+                  <th scope="col">Question1 Mark</th>
+                  <th scope="col">Question2 Mark</th>
+                  <th scope="col">Question3 Mark</th>
+                  <th scope="col">Question4 Mark</th>
+                  <th scope="col">Question5 Mark</th>
+                  <th scope="col">Predicted Marks</th>
+                  <th scope="col">Total marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in result %}
+                <tr>
+                  <th scope="row">{{r[1]}}</th>
+                  <td>{{r[2]}}</td>
+                  <td>{{r[3]}}</td>
+                  <td>{{r[4]}}</td>
+                  <td>{{r[5]}}</td>
+                  <td>{{r[6]}}</td>
+                  <td>{{r[7]}}</td>
+                  <td>{{r[12]}}</td>
+                  <td>{{r[13]}}</td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="w3l-contacts-2" id="contact" style="margin-left: 250px;">
+  <br>
+  <h3 style="margin-left: 250px;">Student Answers</h3>
+  <div class="contacts-main">
+    <div class="form-41-mian py-5">
+      <div class="d-grid align-form-map">
+        <div class="form-inner-cont">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">sid</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Marks for image</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for sid,imgs,unique_marks in flst %}
+                <tr>
+                  <th>{{sid}}</th>
+                  <td><a href="../static/upload_img/{{imgs}}" download>
+                      <img src="../static/upload_img/{{imgs}}" width="104px" height="142px">
+                    </a></td>
+                  <th>
+                    <div class="form-control">
+                      <form action="/imgmarks" method="POST">
+                        <input type="text" name="studid" value="{{sid}}" class="form-control" hidden>
+                        <input type="text" name="imgnam" value="{{imgs}}" class="form-control" hidden>
+                        <input type="text" name="marks" class="form-control">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </form>
+                    </div>
+                  </th>
+                  <th>{{unique_marks}}</th>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+{% endblock%}

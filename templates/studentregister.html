@@ -1,0 +1,47 @@
+
+{% extends 'header.html' %}
+{% block content %}
+<!-- //Top Menu 1 -->
+<!-- contact form -->
+<section class="w3l-contacts-2" id="contact">
+	<div class="contacts-main">
+		<div class="form-41-mian py-5">
+			<div class="container py-md-3">
+				<h3 class="cont-head"> Student Register</h3>
+				<div class="d-grid align-form-map">
+					<div class="form-inner-cont">
+						<form action="/studentregister" method="post" class="main-input">
+							<div class="top-inputs d-grid">
+								<input type="text" name="name" placeholder="Name" required>
+								<input type="text" name="mobile" placeholder="Mobile" required pattern="[789][0-9]{9}">
+							</div>
+                            <div class="top-inputs">
+								<input type="email" placeholder="Email Id" name="email" required>
+							</div>
+                            <div class="top-inputs">
+								<input type="password" placeholder="Password" name="pass" required>
+							</div>
+                            <!--<div class="top-inputs">
+								<input type="email" placeholder="Confirm Password" name="email" required>
+							</div>-->
+                
+							<div class="text-right">
+								<button type="submit" class="btn btn-theme3">Register</button>
+							</div>
+						</form>
+					</div>
+					<div class="contact-right">
+						<img src="{{ url_for('static',filename='images/ab-2.jpg')}}" class="img-fluid" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</section>
+<!-- //contact form -->
+
+<!-- //contact form -->
+{% endblock%}
+ 
+
+
